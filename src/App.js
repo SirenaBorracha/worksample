@@ -31,15 +31,11 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    getResidents()
-      .then((items) => {
-        if (mounted) {
-          setResidents(items);
-        }
-      })
-      .catch((error) => {
-        throw error;
-      });
+    getResidents().then((items) => {
+      if (mounted) {
+        setResidents(items);
+      }
+    });
     return () => (mounted = false);
   }, []);
 
@@ -75,7 +71,9 @@ function App() {
                     <td>
                       <ul>
                         {residents.results === undefined ? (
-                          <div>error</div>
+                          <div>
+                            We encountered a problem while retrieving residents
+                          </div>
                         ) : (
                           residents.results.map((item) => {
                             return <li>{item.name}</li>;
