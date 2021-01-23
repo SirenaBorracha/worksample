@@ -10,10 +10,8 @@ function App() {
     return await data.json();
   };
 
-  const fetchPlanets = () => fetchList("planets");
-  const fetchResidents = () => fetchList("people");
-
   useEffect(() => {
+    const fetchPlanets = () => fetchList("planets");
     let mounted = true;
     fetchPlanets().then((items) => {
       if (mounted) {
@@ -24,6 +22,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    const fetchResidents = () => fetchList("people");
     let mounted = true;
     fetchResidents().then((items) => {
       if (mounted) {
