@@ -5,23 +5,17 @@ function App() {
   const [planets, setPlanets] = useState({});
   const [residents, setResidents] = useState({});
 
-  // const fetchList = async (list) => {
-  //   const data = await fetch(`http://swapi.dev/api/${list}/`);
-  // };
-
-  const getPlanets = async () => {
-    const data = await fetch("http://swapi.dev/api/planets/");
+  const fetchList = async (list) => {
+    const data = await fetch(`http://swapi.dev/api/${list}/`);
     return await data.json();
   };
 
-  const getResidents = async () => {
-    const data = await fetch("http://swapi.dev/api/people/");
-    return await data.json();
-  };
+  const fetchPlanets = () => fetchList("planets");
+  const fetchResidents = () => fetchList("people");
 
   useEffect(() => {
     let mounted = true;
-    getPlanets().then((items) => {
+    fetchPlanets().then((items) => {
       if (mounted) {
         setPlanets(items);
       }
@@ -31,7 +25,7 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    getResidents().then((items) => {
+    fetchResidents().then((items) => {
       if (mounted) {
         setResidents(items);
       }
